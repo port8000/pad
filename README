@@ -4,26 +4,31 @@
 *WARNING:* This is a tool designed only for local development! Using it
 on any server connected to the internet is a HUGE security threat.
 
-The codepad executes the entered text as PHP code. It's use is to
-provide a fast way to experiment with PHP, similar to a shell or command
-line in other languages. There is no safety net. If your web server is
-allowed to ruin your system, then commands entered in the pad might just
-as well do so.
 
-The pad features an SQLite based history of commands.
+About:
+
+    The codepad executes the entered text as PHP code. It's use is to
+    provide a fast way to experiment with PHP, similar to a shell or
+    command line in other languages. There is no safety net. If your web
+    server is allowed to ruin your system, then commands entered in the
+    pad might just as well do so.
+
+    The pad features an SQLite based history of commands.
 
 
 Installation:
 
-Copy pad.php and pad.css to the docroot (or another location reachable
-by your local development webserver). Touch pad.sqlite in the same
-directory and give the webserver write access to it. This file serves as
-command history database.
+    Copy pad.php to the docroot (or another location reachable by your
+    local development webserver). Touch pad.sqlite in the same directory
+    and give the webserver write access to it. This file serves as
+    command history database.
 
-Open localhost/pad.php in your browser. Again, make triple-sure, that it
-cannot be reached from anyone outside.
+    Open localhost/pad.php in your browser. Again, make triple-sure,
+    that it cannot be reached from anyone outside.
+
+    Done. Enjoy fast PHP prototyping.
 
 
 License:
 
-The code is licensed under both the GPL and MIT license.
+    The code is licensed under both the GPL and MIT license.
