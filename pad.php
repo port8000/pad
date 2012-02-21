@@ -1,6 +1,13 @@
 <?php
 /**
  * Scratchpad to quickly try PHP code
+ *
+ * See https://github.com/port8000/pad
+ * Copyright 2012 Port 8000 UG (haftungsbeschraenkt)
+ * This code is licensed under both the MIT and GPL license.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
  */
 ini_set('track_errors', 1);
 ini_set('display_errors', 1);
