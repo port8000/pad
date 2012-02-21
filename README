@@ -7,11 +7,11 @@ on any server connected to the internet is a HUGE security threat.
 
 About:
 
-    The codepad executes the entered text as PHP code. It's use is to
-    provide a fast way to experiment with PHP, similar to a shell or
-    command line in other languages. There is no safety net. If your web
-    server is allowed to ruin your system, then commands entered in the
-    pad might just as well do so.
+    The codepad executes the entered text as PHP code. It provides a
+    fast way to experiment with PHP, similar to a shell or command line
+    in other languages. There is no safety net. If your web server is
+    allowed to ruin your system, then commands entered in the pad might
+    just as well do so.
 
     The pad features an SQLite based history of commands.
 
