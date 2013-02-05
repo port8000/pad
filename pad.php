@@ -54,7 +54,7 @@ if (isset($_POST['c'])) {
 }
 $___i = Null;
 $___s = true;
-$___db = new PDO('sqlite:pad.sqlite');
+$___db = new PDO('sqlite:'.dirname(__FILE__).'/pad.sqlite');
 $___db->query('CREATE TABLE IF NOT EXISTS pad (
   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   code TEXT NOT NULL,
