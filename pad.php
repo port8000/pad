@@ -200,7 +200,7 @@ unset($___d);?>
 </div>
 <div class="content">
 <form method="post" action="">
-<textarea rows="20" cols="78" name="c" id="c" style="height:100<?php
+<textarea rows="20" cols="78" name="c" id="c" autofocus style="height:100<?php
     echo ($___c)? 'px' : '%'?>"><?php
     echo htmlspecialchars($___c, ENT_QUOTES, 'UTF-8')?></textarea>
 <br>
