@@ -210,6 +210,9 @@ unset($___d);?>
 
 if ($___c) {
     try {
+        if (function_exists('untaint')) {
+            untaint($___c);
+        }
         $___r = eval($___c);
         if ($___r === False) {
             $___s = False;
