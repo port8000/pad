@@ -1,7 +1,9 @@
 window.onload = function() {
-  var c = document.getElementById('c');
-  var l = document.querySelectorAll('.codelist div');
-  for (var x in l) {
+  var c = document.getElementById('c'),
+      l = document.getElementsByClassName('codelist__item'),
+      x;
+
+  for (x in l) {
     if (l.hasOwnProperty(x)) {
       l[x].addEventListener('click', (function(x) { return function() {
         if (c.value === '') {
@@ -16,4 +18,10 @@ window.onload = function() {
       })(l[x]), false);
     }
   }
+
+  c.addEventListener('keyup', function(evt) {
+    if (evt.ctrlKey && evt.keyCode === 13) {
+      c.form.submit();
+    }
+  });
 };
