@@ -10,7 +10,7 @@
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
  */
 ini_set('track_errors', 1);
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
 error_reporting(-1);
 set_error_handler('___e');
 
@@ -48,15 +48,6 @@ function ___e($errno, $errstr, $errfile, $errline) {
     }
     echo '</div>';
 }
-
-
-register_shutdown_function(function() {
-    $error = error_get_last();
-    if ($error) {
-        ___e($error["type"], $error["message"], $error["file"],
-             $error["line"]);
-    }
-});
 
 
 #EOF

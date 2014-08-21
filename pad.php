@@ -93,13 +93,15 @@ if ($___c) {
                 $___r = eval($___c);
                 if ($___r === False) {
                     $___s = False;
+                    $e = error_get_last();
+                    ___e($e['type'], $e['message'], $e['file'], $e['line']);
                 } elseif ($___r !== Null) {
                     echo '<hr/>RESULT:<br>' . htmlspecialchars($___r, ENT_QUOTES, 'UTF-8');
                 }
             } catch (Exception $e) {
                 echo '<div class="error"><span class="error__type">EXCEPTION THROWN</span><div class="error__backtrace">';
                 var_dump($e);
-                echo '</div>';
+                echo '</div></div>';
                 $___s = false;
             }
             if ($___i !== NULL && $___s === True) {
@@ -109,7 +111,7 @@ if ($___c) {
         } else {
             ?>Please enter PHP code above. No starting <code>&lt;?php</code> is needed.<?php
         } ?>
-      </div>
+</div>
     </div>
     <?php if ($___i !== NULL): ?>
       <script>last_state = <?php echo $___s? '1' : '0' ?>;</script>
