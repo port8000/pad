@@ -1,3 +1,5 @@
+/* the last_state variable is set before closing </body> and reflects the
+ * processing success of the current statement */
 var last_state;
 
 window.onload = function() {
@@ -7,57 +9,69 @@ window.onload = function() {
       stage = document.getElementsByClassName('stage')[0],
       x;
 
+  /* highlight the current statement in the history with actual state */
   if (last_state !== undefined) {
     l[0].className += " success_" + (last_state? "1" : "0");
   }
 
+  /* navigate the history */
   for (x in l) {
     if (l.hasOwnProperty(x)) {
+      (function(current) {
 
-      l[x].addEventListener('click', (function(x) {
-        return function() {
+        current.addEventListener('click', function() {
           if (code.value === '') {
-            code.value = x.getElementsByTagName('pre')[0].getAttribute("title");
-          } else if (code.value !== x.getElementsByTagName('pre')[0]
+            code.value = current.getElementsByTagName('pre')[0]
+                                .getAttribute("title");
+          } else if (code.value !== current.getElementsByTagName('pre')[0]
                                   .getAttribute("title") &&
                     confirm('overwrite code?')) {
-            code.value = x.getElementsByTagName('pre')[0].getAttribute("title");
+            code.value = current.getElementsByTagName('pre')[0]
+                                .getAttribute("title");
           }
           code.focus();
           return false;
-        };
-      })(l[x]), false);
+        }, false);
 
-      l[x].addEventListener('keydown', (function(x) {
-        return function(evt) {
+        current.addEventListener('focus', function(evt) {
+          current.parentNode.className += ' codelist--active';
+        }, false);
+
+        current.addEventListener('blur', function(evt) {
+          current.parentNode.className = current.parentNode.className
+                                           .replace(' codelist--active', '');
+        }, false);
+
+        current.addEventListener('keydown', function(evt) {
           if (evt.keyCode === 13) { // enter
-            x.dispatchEvent(new Event('click'));
+            current.dispatchEvent(new Event('click'));
           } else if (evt.keyCode === 40 || evt.keyCode === 74) { // ArrDown, j
-            if (x.nextElementSibling) {
-              x.nextElementSibling.focus();
+            if (current.nextElementSibling) {
+              current.nextElementSibling.focus();
             }
             evt.preventDefault();
           } else if (evt.keyCode === 38 || evt.keyCode === 75) { // ArrUp, k
-            if (x.previousElementSibling) {
-              x.previousElementSibling.focus();
+            if (current.previousElementSibling) {
+              current.previousElementSibling.focus();
             }
             evt.preventDefault();
           } else if (evt.keyCode === 27 || evt.keyCode === 72) { // esc, h
             code.focus();
             evt.preventDefault();
           } else if (evt.keyCode === 35) { // end
-            x.parentNode.lastElementChild.focus();
+            current.parentNode.lastElementChild.focus();
             evt.preventDefault();
           } else if (evt.keyCode === 36) { // home
-            x.parentNode.children[0].focus();
+            current.parentNode.children[0].focus();
             evt.preventDefault();
           }
-        };
-      })(l[x]), false);
+        }, false);
 
+      })(l[x]);
     }
   }
 
+  /* react to special key events in code editor */
   code.addEventListener('keydown', function(evt) {
     if (evt.ctrlKey && evt.keyCode === 13) {
       code.form.submit();

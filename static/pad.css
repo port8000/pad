@@ -11,6 +11,12 @@ body {
   overflow-y: scroll;
   max-height: 100vh;
   font-size: smaller;
+  opacity: .5;
+}
+
+.codelist--active,
+.codelist:hover {
+  opacity: 1;
 }
 
 .codelist__item {
