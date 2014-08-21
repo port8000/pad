@@ -85,6 +85,7 @@ window.onload = function() {
       }
     } else if (evt.keyCode > 64 && evt.keyCode < 91 && ! evt.ctrlKey &&
                ! evt.metaKey && ! evt.altKey) {
+      // TODO get cursor position and prev text, then try to match against funcs
     }
   });
 };

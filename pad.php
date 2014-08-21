@@ -54,7 +54,10 @@ if ($___c) {
     <meta charset="utf-8">
     <title>Codepad</title>
     <style><?php include "static/pad.css" ?></style>
-    <script><?php include "static/pad.js" ?></script>
+    <script>
+      var funcs = <?php include "functions.php" ?>;
+      <?php include "static/pad.js" ?>
+    </script>
   </head>
   <body>
     <div class="codelist" tabindex="-1">
