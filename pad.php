@@ -68,17 +68,20 @@ if ($___c) {
         printf('<div class="codelist__item success_%s" tabindex="0"><pre title="%s">%s%s</pre></div>',
             $___d['success'],
             htmlspecialchars($___d['code'], ENT_QUOTES, 'UTF-8'),
-            htmlspecialchars(substr($___d['code'], 0, 40), ENT_QUOTES, 'UTF-8'),
+            htmlspecialchars(substr(trim(preg_replace('/\r?\n([ \t]*\r?\n)+/', "\n", $___d['code'])), 0, 40), ENT_QUOTES, 'UTF-8'),
             strlen($___d['code']) > 40? '...' : '');
       }
       unset($___o);
       unset($___d);?>
     </div>
     <div class="content">
-      <form method="post" action="">
-        <textarea rows="20" cols="78" name="c" id="c" autofocus tabindex="1" class="code code--<?php
-            echo ($___c)? 'filled' : 'empty'?>"><?php
-            echo htmlspecialchars(($___c? $___c : (isset($_GET['c'])? $_GET['c'] : '')), ENT_QUOTES, 'UTF-8')?></textarea>
+      <form method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8') ?>">
+        <textarea placeholder="Enter PHP code here (without leading &lt;?php)"
+                  rows="20" cols="78" name="c" id="c" autofocus tabindex="1"
+                  class="code code--<?php
+                      echo ($___c)? 'filled' : 'empty'?>"><?php
+          echo htmlspecialchars(($___c? $___c : (isset($_GET['c'])? $_GET['c'] : '')), ENT_QUOTES, 'UTF-8');
+        ?></textarea>
         <br>
         <button type="submit" id="run" tabindex="2">run code</button>
         <small>(or press <kbd>Ctrl+Enter</kbd>)</small>
