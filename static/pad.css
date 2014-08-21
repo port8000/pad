@@ -1,12 +1,11 @@
 body {
   font: 1em/1.25 Arial,sans-serif;
-  margin: 10px;
+  margin: 0;
 }
 
 .codelist {
   float:right;
   width: 360px;
-  margin: -10px -10px 0 10px;
   background: white;
   box-shadow: -2px 2px 4px #ddd;
   overflow-x: hidden;
@@ -22,8 +21,10 @@ body {
   border-left: 4px solid #777;
 }
 
+.codelist__item:focus,
 .codelist__item:hover {
-  box-shadow: none;
+  box-shadow: inset 0 0 3px 3px #cfc;
+  outline: none;
 }
 
 .codelist__item.success_0 {
@@ -49,13 +50,14 @@ pre {
 }
 
 .code {
-  border: 1px inset #777;
-  border-radius: 3px;
-  padding: 9px;
+  border: none;
+  padding: 4px 4px 4px 8px;
   width: 100%;
   height: 100%;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  resize: vertical;
+  box-shadow: inset 0 0 3px 3px #eee;
 }
 
 .code--filled {
@@ -64,25 +66,22 @@ pre {
 
 .code:focus,
 .code:active {
-  box-shadow: 0 0 3px 3px #cfc;
-  border-style: solid;
-  border-color: #797;
+  box-shadow: inset 0 0 3px 3px #cfc;
 }
 
 .stage {
   margin: 10px 0;
   border: 1px solid #777;
-  border-radius: 3px;
-  padding: 9px;
+  padding: 4px 4px 4px 8px;
   white-space: pre;
   overflow: auto;
-  resize: both;
+  resize: vertical;
 }
 
 .error {
   border: 1px solid red;
   border-radius: 2px;
-  padding: 9px;
+  padding: 4px;
 }
 
 .error__backtrace {

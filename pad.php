@@ -57,15 +57,15 @@ if ($___c) {
     <script><?php include "static/pad.js" ?></script>
   </head>
   <body>
-    <div class="codelist">
+    <div class="codelist" tabindex="-1">
       <?php if ($___i):
-        printf('<div class="codelist__item"><pre title="%s">%s%s</pre></div>',
+        printf('<div class="codelist__item" tabindex="0"><pre title="%s">%s%s</pre></div>',
             htmlspecialchars($___c, ENT_QUOTES, 'UTF-8'),
             htmlspecialchars(substr($___c, 0, 40), ENT_QUOTES, 'UTF-8'),
             strlen($___c) > 40? '...' : '');
       endif ?>
       <?php foreach ($___o as $___d) {
-        printf('<div class="codelist__item success_%s"><pre title="%s">%s%s</pre></div>',
+        printf('<div class="codelist__item success_%s" tabindex="0"><pre title="%s">%s%s</pre></div>',
             $___d['success'],
             htmlspecialchars($___d['code'], ENT_QUOTES, 'UTF-8'),
             htmlspecialchars(substr($___d['code'], 0, 40), ENT_QUOTES, 'UTF-8'),
@@ -76,11 +76,12 @@ if ($___c) {
     </div>
     <div class="content">
       <form method="post" action="">
-        <textarea rows="20" cols="78" name="c" id="c" autofocus class="code code--<?php
+        <textarea rows="20" cols="78" name="c" id="c" autofocus tabindex="1" class="code code--<?php
             echo ($___c)? 'filled' : 'empty'?>"><?php
             echo htmlspecialchars(($___c? $___c : (isset($_GET['c'])? $_GET['c'] : '')), ENT_QUOTES, 'UTF-8')?></textarea>
         <br>
-        <button type="submit" id="run">run code</button>
+        <button type="submit" id="run" tabindex="2">run code</button>
+        <small>(or press <kbd>Ctrl+Enter</kbd>)</small>
       </form>
       <div class="stage"><?php
 
@@ -110,5 +111,8 @@ if ($___c) {
         } ?>
       </div>
     </div>
+    <?php if ($___i !== NULL): ?>
+      <script>last_state = <?php echo $___s? '1' : '0' ?>;</script>
+    <?php endif ?>
   </body>
 </html>
