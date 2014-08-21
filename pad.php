@@ -15,6 +15,7 @@ require_once "error_handler.php";
 $___c = '';
 if (isset($_POST['c'])) {
     $___c = $_POST['c'];
+    error_log("PHP Pad here. I'm about to eval() some code in file ".__FILE__);
 }
 $___i = Null;
 $___s = true;
