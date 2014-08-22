@@ -74,6 +74,9 @@ window.onload = function() {
           } else if (evt.keyCode === 36) { // home
             current.parentNode.children[0].focus();
             evt.preventDefault();
+          } else if (evt.keyCode === 46) { // del
+            current.getElementsByClassName('codelist__delete')[0].click();
+            evt.preventDefault();
           }
         }, false);
 
