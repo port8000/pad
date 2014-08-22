@@ -46,6 +46,31 @@ body {
   border-color: #D6E9C6;
 }
 
+.codelist__delete {
+  float: right;
+  opacity: 0;
+  width: 1.2em;
+  height: 1.2em;
+  line-height: 1.2em;
+  color: #777;
+  text-decoration: none;
+  background: rgba(255,255,255,.33);
+  text-align: center;
+}
+
+.codelist__item:focus .codelist__delete,
+.codelist__item:hover .codelist__delete {
+  opacity: 1;
+}
+
+.codelist__delete:focus,
+.codelist__delete:hover {
+  opacity: 1;
+  color: #222;
+  background: white;
+  outline: none;
+}
+
 .content {
   margin-right: 362px;
 }

@@ -19,7 +19,10 @@ window.onload = function() {
     if (l.hasOwnProperty(x)) {
       (function(current) {
 
-        current.addEventListener('click', function() {
+        current.addEventListener('click', function(evt) {
+          if (evt.target.nodeName.toUpperCase() === 'A') {
+            return;
+          }
           if (code.value === '') {
             code.value = current.getElementsByTagName('pre')[0]
                                 .getAttribute("title");
@@ -30,19 +33,26 @@ window.onload = function() {
                                 .getAttribute("title");
           }
           code.focus();
-          return false;
+          evt.preventDefault();
+          evt.stopPropagation();
         }, false);
 
+        /* focus and blur must be catched in the capture phase, see
+         * http://www.quirksmode.org/blog/archives/2008/04/delegating_the.html
+         */
         current.addEventListener('focus', function(evt) {
           current.parentNode.className += ' codelist--active';
-        }, false);
+        }, true);
 
         current.addEventListener('blur', function(evt) {
           current.parentNode.className = current.parentNode.className
                                            .replace(' codelist--active', '');
-        }, false);
+        }, true);
 
         current.addEventListener('keydown', function(evt) {
+          if (evt.target.nodeName.toUpperCase() === 'A') {
+            return;
+          }
           if (evt.keyCode === 13) { // enter
             current.dispatchEvent(new Event('click'));
           } else if (evt.keyCode === 40 || evt.keyCode === 74) { // ArrDown, j

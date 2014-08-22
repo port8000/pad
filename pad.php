@@ -26,6 +26,15 @@ $___db->query('CREATE TABLE IF NOT EXISTS pad (
   created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   success INTEGER DEFAULT 0
 )');
+
+if (isset($_GET['___k']) && is_numeric($_GET['___k'])) {
+    /* a history item is selected to be deleted */
+    $___db->prepare('DELETE FROM pad WHERE "id" = ?')
+          ->execute(array($_GET['___k']));
+    header('Location: '.$_SERVER['PHP_SELF']);
+    die();
+}
+
 $___o = $___db->query('SELECT * FROM pad
         ORDER BY created DESC LIMIT 39')->fetchAll(PDO::FETCH_ASSOC);
 
@@ -69,7 +78,9 @@ if ($___c) {
             strlen($___c) > 40? '...' : '');
       endif ?>
       <?php foreach ($___o as $___d) {
-        printf('<div class="codelist__item success_%s" tabindex="0"><pre title="%s">%s%s</pre></div>',
+          printf('<div class="codelist__item success_%s" tabindex="0">
+              <a class="codelist__delete" href="?___k='.$___d['id'].'" title="delete this entry">×</a>
+              <pre title="%s">%s%s</pre></div>',
             $___d['success'],
             htmlspecialchars($___d['code'], ENT_QUOTES, 'UTF-8'),
             htmlspecialchars(substr(trim(preg_replace('/\r?\n([ \t]*\r?\n)+/', "\n", $___d['code'])), 0, 40), ENT_QUOTES, 'UTF-8'),
@@ -79,7 +90,7 @@ if ($___c) {
       unset($___d);?>
     </div>
     <div class="content">
-      <form method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8') ?>">
+      <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8') ?>">
         <textarea placeholder="Enter PHP code here (without leading &lt;?php)"
                   rows="20" cols="78" name="c" id="c" autofocus tabindex="1"
                   class="code code--<?php
