@@ -1,12 +1,12 @@
 /* the last_state variable is set before closing </body> and reflects the
  * processing success of the current statement */
+/* global Event */
 var last_state;
 
 window.onload = function() {
   var code = document.getElementById('c'),
       l = document.getElementsByClassName('codelist__item'),
       content = document.getElementsByClassName('content')[0],
-      stage = document.getElementsByClassName('stage')[0],
       x;
 
   /* highlight the current statement in the history with actual state */
@@ -28,7 +28,7 @@ window.onload = function() {
                                 .getAttribute("title");
           } else if (code.value !== current.getElementsByTagName('pre')[0]
                                   .getAttribute("title") &&
-                    confirm('overwrite code?')) {
+                    window.confirm('overwrite code?')) {
             code.value = current.getElementsByTagName('pre')[0]
                                 .getAttribute("title");
           }
@@ -40,11 +40,11 @@ window.onload = function() {
         /* focus and blur must be catched in the capture phase, see
          * http://www.quirksmode.org/blog/archives/2008/04/delegating_the.html
          */
-        current.addEventListener('focus', function(evt) {
+        current.addEventListener('focus', function() {
           current.parentNode.className += ' codelist--active';
         }, true);
 
-        current.addEventListener('blur', function(evt) {
+        current.addEventListener('blur', function() {
           current.parentNode.className = current.parentNode.className
                                            .replace(' codelist--active', '');
         }, true);
