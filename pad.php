@@ -35,6 +35,20 @@ if (isset($_GET['___k']) && is_numeric($_GET['___k'])) {
     die();
 }
 
+if (isset($_GET['___f']) && strlen($_GET['___f']) > 1 &&
+    ! preg_match('/[^a-zA-Z0-9_]/', $_GET['___f'])) {
+    /* a function definition is requested */
+    header('Content-type: application/json; charset=utf-8');
+    require_once "functions.php";
+    $result = array();
+    foreach ($functions as $name => $synopsis) {
+        if (strpos($name, $_GET['___f']) === 0) {
+            $result[$name] = $synopsis;
+        }
+    }
+    die(json_encode($result));
+}
+
 $___o = $___db->query('SELECT * FROM pad
         ORDER BY created DESC LIMIT 39')->fetchAll(PDO::FETCH_ASSOC);
 
@@ -65,14 +79,15 @@ if ($___c) {
     <title>Codepad</title>
     <style><?php include "static/pad.css" ?></style>
     <script>
-      var funcs = <?php include "functions.php" ?>;
       <?php include "static/pad.js" ?>
     </script>
   </head>
   <body>
     <div class="codelist" tabindex="-1">
       <?php if ($___i):
-        printf('<div class="codelist__item" tabindex="0"><pre title="%s">%s%s</pre></div>',
+      printf('<div class="codelist__item" tabindex="0">
+              <a class="codelist__delete" href="?___k='.$___i.'" title="delete this entry">×</a>
+              <pre title="%s">%s%s</pre></div>',
             htmlspecialchars($___c, ENT_QUOTES, 'UTF-8'),
             htmlspecialchars(substr($___c, 0, 40), ENT_QUOTES, 'UTF-8'),
             strlen($___c) > 40? '...' : '');
@@ -114,7 +129,7 @@ if ($___c) {
                     $e = error_get_last();
                     ___e($e['type'], $e['message'], $e['file'], $e['line']);
                 } elseif ($___r !== Null) {
-                    echo '<hr/>RESULT:<br>' . htmlspecialchars($___r, ENT_QUOTES, 'UTF-8');
+                    echo '<hr/>RETURNED VALUE:<br>' . htmlspecialchars($___r, ENT_QUOTES, 'UTF-8');
                 }
             } catch (Exception $e) {
                 echo '<div class="error"><span class="error__type">EXCEPTION THROWN</span><div class="error__backtrace">';
