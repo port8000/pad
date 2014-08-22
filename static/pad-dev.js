@@ -5,7 +5,7 @@ var last_state;
 
 window.onload = function() {
   var code = document.getElementById('c'),
-      l = document.getElementsByClassName('codelist__item'),
+      l = document.getElementsByClassName('history__item'),
       content = document.getElementsByClassName('content')[0],
       x;
 
@@ -41,12 +41,12 @@ window.onload = function() {
          * http://www.quirksmode.org/blog/archives/2008/04/delegating_the.html
          */
         current.addEventListener('focus', function() {
-          current.parentNode.className += ' codelist--active';
+          current.parentNode.className += ' history--active';
         }, true);
 
         current.addEventListener('blur', function() {
           current.parentNode.className = current.parentNode.className
-                                           .replace(' codelist--active', '');
+                                           .replace(' history--active', '');
         }, true);
 
         current.addEventListener('keydown', function(evt) {
@@ -75,7 +75,7 @@ window.onload = function() {
             current.parentNode.children[0].focus();
             evt.preventDefault();
           } else if (evt.keyCode === 46) { // del
-            current.getElementsByClassName('codelist__delete')[0].click();
+            current.getElementsByClassName('history__delete')[0].click();
             evt.preventDefault();
           }
         }, false);

@@ -81,18 +81,18 @@ if ($___c) {
     <script><?php include "static/pad.js" ?></script>
   </head>
   <body>
-    <div class="codelist" tabindex="-1">
+    <div class="history" tabindex="-1">
       <?php if ($___i):
-      printf('<div class="codelist__item" tabindex="0">
-              <a class="codelist__delete" href="?___k='.$___i.'" title="delete this entry">×</a>
+      printf('<div class="history__item" tabindex="0">
+              <a class="history__delete" href="?___k='.$___i.'" title="delete this entry">×</a>
               <pre title="%s">%s%s</pre></div>',
             htmlspecialchars($___c, ENT_QUOTES, 'UTF-8'),
             htmlspecialchars(substr($___c, 0, 40), ENT_QUOTES, 'UTF-8'),
             strlen($___c) > 40? '...' : '');
       endif ?>
       <?php foreach ($___o as $___d) {
-          printf('<div class="codelist__item success_%s" tabindex="0">
-              <a class="codelist__delete" href="?___k='.$___d['id'].'" title="delete this entry">×</a>
+          printf('<div class="history__item success_%s" tabindex="0">
+              <a class="history__delete" href="?___k='.$___d['id'].'" title="delete this entry">×</a>
               <pre title="%s">%s%s</pre></div>',
             $___d['success'],
             htmlspecialchars($___d['code'], ENT_QUOTES, 'UTF-8'),
