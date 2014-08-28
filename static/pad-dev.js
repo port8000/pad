@@ -193,9 +193,17 @@ window.onload = function() {
 
       for (; i < plen; i++) {
         if (p[i] === document.activeElement) {
-          alert(p[i].dataset.func);
-          // TODO insert func in code
-          evt.preventDefault();
+          var func = p[i].dataset.func;
+          if (func) {
+            var val = code.value,
+                sStart = code.selectionStart,
+                sEnd = code.selectionEnd,
+                sVal = val.substring(0, sStart).replace(new RegExp(stub+'$'), '') + func;
+            evt.preventDefault();
+            code.value = sVal + val.substring(sEnd);
+            code.selectionStart = code.selectionEnd = sVal.length;
+            code.focus();
+          }
           break;
         }
       }

@@ -8,4 +8,4 @@ static/pad.css: static/pad.scss static/_*.scss
 js: static/pad.js
 
 static/pad.js: static/pad-dev.js static/textarea-caret-position.js
-	browserify $< >$@ #| uglifyjs -m -c > $@
+	browserify $< | uglifyjs -m -c > $@
