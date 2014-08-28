@@ -89,9 +89,9 @@ window.onload = function() {
 
   /* react to special key events in code editor */
   code.addEventListener('keydown', function(evt) {
-    if (evt.ctrlKey && evt.keyCode === 13) {
+    if (evt.ctrlKey && evt.keyCode === 13) { // ctrl+enter
       code.form.submit();
-    } else if (evt.keyCode === 13) {
+    } else if (evt.keyCode === 13) { // enter
       evt.preventDefault();
       code.value += "\n";
       if (code.scrollHeight > code.offsetHeight) {
@@ -100,7 +100,7 @@ window.onload = function() {
         }
       }
     } else if (evt.keyCode === 32 && evt.ctrlKey &&
-               ! evt.metaKey && ! evt.altKey) {
+               ! evt.metaKey && ! evt.altKey) { // ctrl+space
         var val = code.value,
             sStart = code.selectionStart,
             sEnd = code.selectionEnd,
@@ -113,7 +113,7 @@ window.onload = function() {
         stub = stub.split('').reverse().join('');
         stub = stub.replace(/^([a-zA-Z0-9_]*)(.|\s)*$/, '$1');
         stub = stub.split('').reverse().join('');
-        if (stub.length > 2) {
+        if (stub.length > 1) {
           evt.preventDefault();
           var xht = new XMLHttpRequest();
           xht.onreadystatechange = function() {
