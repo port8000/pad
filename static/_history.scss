@@ -1,0 +1,79 @@
+.history {
+  float:right;
+  width: 360px;
+  background: white;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 100vh;
+  font-size: smaller;
+  opacity: .5;
+  filter: url("data:image/svg+xml;utf8,<svg%20xmlns='http://www.w3.org/2000/svg'><filter%20id='grayscale'><feColorMatrix%20type='matrix'%20values='0.3333%200.3333%200.3333%200%200%200.3333%200.3333%200.3333%200%200%200.3333%200.3333%200.3333%200%200%200%200%200%201%200'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
+  filter: grayscale(100%); /* Current draft standard */
+  -webkit-filter: grayscale(100%); /* New WebKit */
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%); 
+  -o-filter: grayscale(100%);
+  filter: gray; /* IE6+ */
+
+  &--active,
+  &:hover {
+    opacity: 1;
+    -webkit-filter: none;
+    -moz-filter: none;
+    -ms-filter: none;
+    -o-filter: none;
+    filter: none;
+  }
+}
+
+.history__item {
+  padding: 2px 4px;
+  cursor: pointer;
+  border: 1px solid #aaa;
+  border-radius: 2px 0 0 2px;
+  box-shadow: inset 0 -3px 5px 0 rgba(0,0,0,.05);
+  margin-bottom: 1px;
+
+  &:focus,
+  &:hover {
+    box-shadow: inset 0 0 3px 3px #fff;
+    outline: none;
+  }
+
+  &.success_0 {
+    color: #A94442;
+    background-color: #F2DEDE;
+    border-color: #EBCCD1;
+  }
+
+  &.success_1 {
+    color: #3C763D;
+    background: #DFF0D8;
+    border-color: #D6E9C6;
+  }
+}
+
+.history__delete {
+  float: right;
+  opacity: 0;
+  width: 1.2em;
+  height: 1.2em;
+  line-height: 1.2em;
+  color: #777;
+  text-decoration: none;
+  background: rgba(255,255,255,.33);
+  text-align: center;
+
+  .history__item:focus &,
+  .history__item:hover & {
+    opacity: 1;
+  }
+
+  &:focus,
+  &:hover {
+    opacity: 1;
+    color: #222;
+    background: white;
+    outline: none;
+  }
+}
