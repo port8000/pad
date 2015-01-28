@@ -1,8 +1,9 @@
+/* global Event */
+var caret_pos = require('./textarea-caret-position');
+
 /* the last_state variable is set before closing </body> and reflects the
  * processing success of the current statement */
-/* global Event */
-var last_state,
-    caret_pos = require('./textarea-caret-position');
+var last_state = window.last_state = null;
 
 window.onload = function() {
   var code = document.getElementById('c'),
@@ -92,13 +93,15 @@ window.onload = function() {
     if (evt.ctrlKey && evt.keyCode === 13) { // ctrl+enter
       code.form.submit();
     } else if (evt.keyCode === 13) { // enter
-      evt.preventDefault();
-      code.value += "\n";
-      if (code.scrollHeight > code.offsetHeight) {
-        if (content.offsetHeight <= window.innerHeight - 20) {
-          code.style.height = (code.offsetHeight+20)+"px";
+      //evt.preventDefault();
+      //code.value += "\n";
+      window.setTimeout(function() {
+        if (code.scrollHeight > code.offsetHeight) {
+          if (content.offsetHeight <= window.innerHeight - 20) {
+            code.style.height = (code.offsetHeight+20)+"px";
+          }
         }
-      }
+      });
     } else if (evt.keyCode === 32 && evt.ctrlKey &&
                ! evt.metaKey && ! evt.altKey) { // ctrl+space
         var val = code.value,
