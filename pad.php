@@ -12,6 +12,9 @@
 require_once "error_handler.php";
 
 
+define('HISTSIZE', 99);
+
+
 $___c = '';
 if (isset($_POST['c'])) {
     $___c = $_POST['c'];
@@ -50,7 +53,7 @@ if (isset($_GET['___f']) && strlen($_GET['___f']) > 1 &&
 }
 
 $___o = $___db->query('SELECT * FROM pad
-        ORDER BY created DESC LIMIT 39')->fetchAll(PDO::FETCH_ASSOC);
+        ORDER BY created DESC LIMIT '.HISTSIZE)->fetchAll(PDO::FETCH_ASSOC);
 
 
 if ($___c) {
