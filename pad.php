@@ -130,6 +130,9 @@ if ($___c) {
                     $e = error_get_last();
                     ___e($e['type'], $e['message'], $e['file'], $e['line']);
                 } elseif ($___r !== Null) {
+                    if (! is_string($___r)) {
+                        $___r = print_r($___r, true);
+                    }
                     echo '<hr/>RETURNED VALUE:<br>' . htmlspecialchars($___r, ENT_QUOTES, 'UTF-8');
                 }
             } catch (Exception $e) {
