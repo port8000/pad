@@ -9,7 +9,7 @@
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
  */
-require_once "error_handler.php";
+require_once 'error_handler.php';
 
 
 define('HISTSIZE', 99);
@@ -42,7 +42,7 @@ if (isset($_GET['___f']) && strlen($_GET['___f']) > 1 &&
     ! preg_match('/[^a-zA-Z0-9_]/', $_GET['___f'])) {
     /* a function definition is requested */
     header('Content-type: application/json; charset=utf-8');
-    require_once "functions.php";
+    require_once 'functions.php';
     $result = array();
     foreach ($functions as $name => $synopsis) {
         if (strpos($name, $_GET['___f']) === 0) {
@@ -149,6 +149,7 @@ if ($___c) {
             ?>Please enter PHP code above. No starting <code>&lt;?php</code> is needed.<?php
         } ?>
 </div>
+    <p><small title="If you can see this, there was no uncatched fatal error above."><code>EOF</code></small></p>
     </div>
     <?php if ($___i !== NULL): ?>
       <script>last_state = <?php echo $___s? '1' : '0' ?>;</script>
