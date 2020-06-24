@@ -149,7 +149,7 @@ if ($___c) {
             ?>Please enter PHP code above. No starting <code>&lt;?php</code> is needed.<?php
         } ?>
 </div>
-    <p><small title="If you can see this, there was no uncatched fatal error above."><code>EOF</code></small></p>
+    <p><small title="If you can see this, there was no uncaught fatal error above."><code>EOF</code></small></p>
     </div>
     <?php if ($___i !== NULL): ?>
       <script>last_state = <?php echo $___s? '1' : '0' ?>;</script>
