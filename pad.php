@@ -82,6 +82,7 @@ if ($___c) {
     <title>Codepad</title>
     <style><?php include "static/pad.css" ?></style>
     <script><?php include "static/pad.js" ?></script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http%3A//www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%0A%3Crect%20x=%220%22%20y=%220%22%20width=%2232%22%20height=%2232%22%20fill=%22red%22/%3E%0A%3C/svg%3E">
   </head>
   <body>
     <div class="history" tabindex="-1">
