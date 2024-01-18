@@ -1,0 +1,27 @@
+#!/bin/bash
+
+cd "$(dirname "$(dirname "$0")")" || {
+  echo "cannot reach pad installation folder. Exiting." >&2
+  exit 1
+}
+
+php -S 0:8099 &
+PADPID=$?
+
+URL="http://localhost:8099/pad.php"
+if command -v xdg-open &>/dev/null; then
+    xdg-open "$URL"
+elif command -v open &>/dev/null; then
+    open "$URL"
+else
+    echo "open $URL in your browser to access the pad"
+fi
+
+_shutdown() {
+    if [[ $PADPID ]]; then
+        kill "$PADPID"
+    fi
+}
+trap _shutdown EXIT
+
+wait
