@@ -17,5 +17,5 @@ static/pad.js: static/pad-dev.js static/textarea-caret-position.js
 	browserify $< | uglifyjs -m -c > $@
 
 run:
-	$(PHP) -S 0:$(PORT)
+	$(PHP) -S localhost:$(PORT)
 .PHONY: run

@@ -5,7 +5,7 @@ cd "$(dirname "$(dirname "$0")")" || {
   exit 1
 }
 
-php -S 0:8099 &
+php -S localhost:8099 &
 PADPID=$?
 
 URL="http://localhost:8099/pad.php"
