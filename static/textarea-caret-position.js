@@ -99,8 +99,4 @@ var getCaretCoordinatesFn = function (element, position, recalculate) {
   return coordinates;
 }
 
-if (typeof Package !== 'undefined') {
-  getCaretCoordinates = getCaretCoordinatesFn;  // Meteor
-} else {
-  module.exports = getCaretCoordinatesFn;    // Component
-}
+export { getCaretCoordinatesFn as getCaretPosition };
