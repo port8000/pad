@@ -1,14 +1,8 @@
 PORT := 8099
 PHP := php
 
-all: css js
+all: js
 .PHONY: all
-
-css: static/pad.css
-.PHONY: css
-
-static/pad.css: static/pad.scss static/_*.scss
-	sass $< | cssmin > $@
 
 js: static/pad.js
 .PHONY: js
